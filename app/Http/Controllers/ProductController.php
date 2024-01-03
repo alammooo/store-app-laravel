@@ -14,12 +14,17 @@ class ProductController extends Controller
     public function index()
     {
 
-        // return request('categoryId');
+        // $categoryId = request('categoryId');
+
+        // $result = Category::where('id', request('categoryId'))->value('name');
+        // dd($result);
         return view(
             './product/list/index',
             [
                 'products' => Product::with('category')->filter(request(['search', 'categoryId']))->get(),
-                'categories' => Category::all()
+                'categories' => Category::all(),
+                'categoryName' => Category::where('id', request('categoryId'))->value('name'),
+                'active' => 'product'
             ]
         );
     }
@@ -91,8 +96,10 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        $product->delete();
+        $result = Product::where('id', request('productId'))->value('id');
+        // dd($result);
+        Product::destroy($result);
 
-        return redirect('/product');
+        return redirect('/product')->with('success', 'Sukses menghapus produk');
     }
 }

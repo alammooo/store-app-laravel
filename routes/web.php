@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,17 +16,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', '/product');
+// Route::redirect('/', '/product');
 
-Route::get('/auth', function () {
-    return view('./auth/login');
-});
+Route::get('/auth', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/auth', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::get('/product', [ProductController::class, 'index']);
-Route::get('/product/create', [ProductController::class, 'create']);
-Route::post('/product', [ProductController::class, 'store'])->name('product.store');
-Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
+Route::get('/product/create', [ProductController::class, 'create'])->middleware('auth');
+Route::post('/product', [ProductController::class, 'store'])->name('product.store')->middleware('auth');
+Route::delete('/product/{id}', [ProductController::class, 'destroy'])->middleware('auth');
+Route::patch('/product/{id}', [ProductController::class, 'update'])->middleware('auth');
 
 Route::get('/profile', function () {
     return view('./profile/index');
-});
+})->middleware('auth');

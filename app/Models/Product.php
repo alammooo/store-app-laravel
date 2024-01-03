@@ -35,11 +35,11 @@ class Product extends Model
             return $query->where('name', 'like', '%' . $search . '%');
         });
 
-        $query->when($filters['category'] ?? false, function ($query, $categoryId) {
-            // return $query->whereHas('category', function ($query) use ($categoryId) {
-            //     $query->where('categoryId', $categoryId);
-            // });
-            return $query->where('categoryId', $categoryId);
+        $query->when($filters['categoryId'] ?? false, function ($query, $categoryId) {
+            return $query->whereHas('category', function ($query) use ($categoryId) {
+                $query->where('categoryId', $categoryId);
+            });
+            // return $query->where('categoryId', $categoryId);
         });
     }
 }
