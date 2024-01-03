@@ -81,7 +81,7 @@
                         </a>
                     </li>
                 @endauth
-                <li>
+                {{-- <li>
                     <a href="#" class="flex items-center p-2 text-white rounded-lg hover:bg-[#f75c53] group">
                         <svg class="flex-shrink-0 w-5 h-5 text-white transition duration-75" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -93,7 +93,7 @@
                         </svg>
                         <span class="flex-1 ms-3 whitespace-nowrap">Sign Up</span>
                     </a>
-                </li>
+                </li> --}}
             </ul>
         </div>
     </aside>

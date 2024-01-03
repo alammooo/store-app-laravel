@@ -24,9 +24,10 @@ Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::get('/product', [ProductController::class, 'index']);
 Route::get('/product/create', [ProductController::class, 'create'])->middleware('auth');
+Route::get('/product/{id}/edit', [ProductController::class, 'edit'])->middleware('auth');
 Route::post('/product', [ProductController::class, 'store'])->name('product.store')->middleware('auth');
-Route::delete('/product/{id}', [ProductController::class, 'destroy'])->middleware('auth');
-Route::patch('/product/{id}', [ProductController::class, 'update'])->middleware('auth');
+Route::delete('/product/{id}', [ProductController::class, 'destroy'])->middleware('auth')->name('product.delete');
+Route::put('/product/{id}', [ProductController::class, 'update'])->middleware('auth');
 
 Route::get('/profile', function () {
     return view('./profile/index');

@@ -131,11 +131,12 @@
                                 </td>
                                 <td class="px-4 py-2 ">
                                     <div class="flex items-center gap-5">
-                                        <a href={{ '/product/' . $product->id }}
+                                        <a href={{ '/product/' . $product->id . '/edit' }}
                                             class="font-medium text-blue-600 hover:text-blue-700"><x-zondicon-edit-pencil
                                                 class="w-4 h-4" /></a>
-                                        <form action="{{ '/product/' . $product->id }}" method="POST">
-                                            @method('delete')
+                                        <form action="{{ route('product.delete', ['id' => $product->id]) }}"
+                                            method="POST">
+                                            @method('DELETE')
                                             @csrf
                                             <input type="hidden" value="{{ $product->id }}" name="productId">
                                             <button type="submit"
