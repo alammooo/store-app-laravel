@@ -13,10 +13,13 @@ class ProductController extends Controller
      */
     public function index()
     {
+
+        // return request('categoryId');
         return view(
             './product/list/index',
             [
-                'products' => Product::with('category')->filter(request(['search']))->get()
+                'products' => Product::with('category')->filter(request(['search', 'categoryId']))->get(),
+                'categories' => Category::all()
             ]
         );
     }
@@ -37,6 +40,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
+        // dd($request);
         // return $request->file('image');
         $validatedData = $request->validate(Product::$rules);
 

@@ -34,5 +34,12 @@ class Product extends Model
         $query->when($filters['search'] ?? false, function ($query, $search) {
             return $query->where('name', 'like', '%' . $search . '%');
         });
+
+        $query->when($filters['category'] ?? false, function ($query, $categoryId) {
+            // return $query->whereHas('category', function ($query) use ($categoryId) {
+            //     $query->where('categoryId', $categoryId);
+            // });
+            return $query->where('categoryId', $categoryId);
+        });
     }
 }
