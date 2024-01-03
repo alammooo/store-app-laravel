@@ -69,24 +69,27 @@
                         Upload Image
                     </h1>
                     <div class='flex items-center justify-center'>
-                        <label for='dropzone-file'
+                        <label for='image'
                             class='flex flex-col items-center justify-center w-full h-64 border-2 border-blue-300 border-dashed rounded-md cursor-pointer bg-white'>
                             <div class='flex flex-col items-center justify-center pt-5 pb-6'>
-                                <svg class="w-8 h-8 mb-4 text-blue-500" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
-                                </svg>
-                                <p class='mb-2 text-sm text-blue-500'>
-                                    <span class='font-semibold'>Upload Gambar Disini
-                                </p>
-                                <p class='text-xs text-blue-500'>
-                                    PNG, JPG (MAX. 800x400px)
-                                </p>
+                                <img id='img-preview' alt="preview-image">
+                                <div id="svgImage">
+                                    <svg class="w-8 h-8 mb-4 text-blue-500 block mx-auto" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                                    </svg>
+                                    <p class='mb-2 text-sm text-blue-500'>
+                                        <span class='font-semibold'>Upload Gambar Disini
+                                    </p>
+                                    <p class='text-xs text-blue-500'>
+                                        PNG, JPG (MAX. 800x400px)
+                                    </p>
+                                </div>
                             </div>
-                            <input id='dropzone-file' type='file' name="image" accept='.png, .jpeg, .jpg'
-                                class='hidden' />
+                            <input id='image' type='file' name="image" accept='.png, .jpeg, .jpg' class='hidden'
+                                onchange="previewImage()" />
                         </label>
                     </div>
                     @error('image')
@@ -135,5 +138,47 @@
 
         //     sellPriceInput.value = formattedValue;
         // });
+
+        // function previewImage() {
+        //     const image = document.querySelector('#image');
+        //     const imgPreview = document.querySelector('#img-preview');
+
+        //     console.log(image.files[0])
+        //     const oFReader = new FileReader();
+        //     oFReader.readAsDataURL(image.files[0]);
+
+        //     oFReader.onload = function(oFREvent) {
+        //         imgPreview.src = oFREvent.taget.result;
+        //     }
+
+        //     console.log(imgPreview.src, "HALLO SRC")
+        // }
+        document.addEventListener("DOMContentLoaded", function() {
+            const uploadFile = document.getElementById('image');
+            const previewImage = document.getElementById('img-preview');
+            const svgImage = document.getElementById('svgImage')
+
+            uploadFile.addEventListener('change', function(event) {
+                const file = event.target.files[0];
+
+                if (file) {
+                    const reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        previewImage.src = e.target.result;
+                        previewImage.style.display = 'block';
+                        previewImage.style.height = '230px'
+                        svgImage.style.display = 'none'
+                    };
+
+                    reader.readAsDataURL(file);
+                } else {
+                    previewImage.src = '#';
+                    previewImage.style.display = 'none';
+                    previewImage.style.height = '0px'
+                    svgImage.style.display = 'block'
+                }
+            });
+        });
     </script>
 @endsection
