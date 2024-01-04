@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,15 +25,17 @@ Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::redirect('/', '/product');
 Route::get('/product', [ProductController::class, 'index']);
+Route::get('/export-products', [ProductController::class, 'export'])->name('export.products');
 
 Route::middleware(['auth'])->name('product.')->group(function () {
-    Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
-    Route::get('/product/{id}/edit', [ProductController::class, 'edit'])->name('product.edit');
-    Route::post('/product', [ProductController::class, 'store'])->name('product.store');
-    Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('product.delete');
-    Route::put('/product/{id}', [ProductController::class, 'update'])->name('product.update');
+    Route::get('/product/create', [ProductController::class, 'create'])->name('create');
+    Route::get('/product/{id}/edit', [ProductController::class, 'edit'])->name('edit');
+    Route::post('/product', [ProductController::class, 'store'])->name('store');
+    Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('delete');
+    Route::put('/product/{id}', [ProductController::class, 'update'])->name('update');
 });
 
-Route::get('/profile', function () {
-    return view('./profile/index');
-})->middleware('auth');
+Route::middleware(['auth'])->name('user.')->group(function () {
+    Route::get('/profile', [UserController::class, 'index'])->middleware('auth');
+    Route::put('/profile', [UserController::class, 'update'])->middleware('auth')->name('update');
+});

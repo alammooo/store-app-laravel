@@ -72,7 +72,7 @@
                         <label for='image'
                             class='flex flex-col items-center justify-center w-full h-64 border-2 border-blue-300 border-dashed rounded-md cursor-pointer bg-white'>
                             <div class='flex flex-col items-center justify-center pt-5 pb-6'>
-                                <img id='img-preview' alt="preview-image">
+                                <img id='img-preview'>
                                 <div id="svgImage">
                                     <svg class="w-8 h-8 mb-4 text-blue-500 block mx-auto" aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">

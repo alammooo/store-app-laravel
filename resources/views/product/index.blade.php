@@ -55,9 +55,9 @@
                 </div>
             </div>
             <div class="flex items-center gap-5">
-                <button type="button"
+                <a href="{{ route('export.products') }}"
                     class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-1 focus:ring-green-300 font-medium rounded-md text-sm px-5 py-1.5 me-2 mb-2">Export
-                    Excel</button>
+                    Excel</a>
                 <a href="/product/create"
                     class="focus:outline-none text-white focus:ring-1 bg-oren hover:bg-orange-600 font-medium rounded-md text-sm px-5 py-1.5 me-2 mb-2">Tambah
                     Produk</a>
@@ -156,7 +156,8 @@
                 </table>
             </div>
             <div class="flex justify-between mt-2">
-                <h1 class="text-gray-600 font-medium text-sm">Show {{ $products->lastItem() }} from {{ $products->total() }}</h1>
+                <h1 class="text-gray-600 font-medium text-sm">Show {{ $products->lastItem() }} from
+                    {{ $products->total() }}</h1>
                 <nav aria-label="Page navigation example">
                     <ul class="inline-flex -space-x-px text-sm">
                         @foreach ($products->getUrlRange(1, $products->lastPage()) as $page => $url)

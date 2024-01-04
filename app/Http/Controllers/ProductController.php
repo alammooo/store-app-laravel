@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ProductsExport;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
@@ -80,19 +82,6 @@ class ProductController extends Controller
         $categories = Category::all();
         return view('product.edit', compact('product', 'categories'));
     }
-    // {
-    //     // dd(Product::with('category')->where('id', request('id')));
-
-    //     $request->validate([
-    //         'id' => 'required|numeric', // Example validation rules; adjust as needed
-    //     ]);
-
-
-    //     return view('./product/edit', [
-    //         'categories' => Category::all(),
-    //         'product' => Product::with('category')->find(request('id')),
-    //     ]);
-    // }
 
     public function update(Request $request, Product $product)
     {
@@ -123,5 +112,10 @@ class ProductController extends Controller
         Product::destroy($result);
 
         return redirect('/product')->with('success', 'Sukses menghapus produk');
+    }
+
+    public function export()
+    {
+        return Excel::download(new ProductsExport(), 'products.xlsx');
     }
 }
