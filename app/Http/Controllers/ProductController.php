@@ -19,7 +19,7 @@ class ProductController extends Controller
         // $result = Category::where('id', request('categoryId'))->value('name');
         // dd($result);
         return view(
-            './product/list/index',
+            'product.index',
             [
                 'products' => Product::with('category')->filter(request(['search', 'categoryId']))->paginate(10),
                 'categories' => Category::all(),
@@ -78,7 +78,7 @@ class ProductController extends Controller
     {
         $product = Product::with('category')->findOrFail($id);
         $categories = Category::all();
-        return view('./product/edit', compact('product', 'categories'));
+        return view('product.edit', compact('product', 'categories'));
     }
     // {
     //     // dd(Product::with('category')->where('id', request('id')));
