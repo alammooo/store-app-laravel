@@ -6,12 +6,45 @@ WORKDIR /var/www/html
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
-    libzip-dev \
-    unzip \
-    git
+    libldap2-dev \
+    libcurl4-openssl-dev \
+    libffi-dev \
+    libgmp-dev \
+    libicu-dev \
+    libxml2-dev \
+    libssl-dev \
+    libsqlite3-dev \
+    libpq-dev \
+    && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
+    && docker-php-ext-install \
+        gd \
+        ldap \
+        curl \
+        ffi \
+        ftp \
+        fileinfo \
+        gettext \
+        gmp \
+        intl \
+        imap \
+        mbstring \
+        exif \
+        mysqli \
+        odbc \
+        openssl \
+        pdo_mysql \
+        pdo_odbc \
+        pdo_pgsql \
+        pdo_sqlite \
+        pgsql \
+        shmop \
+        zip
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Install docker php ext
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd ldap curl ffi ftp fileinfo gettext gmp intl imap exif mysqli odbc openssl pdo_mysql pdo_odbc pdo_pgsql pdo_sqlite pgsql shmop zip
 
 # Copy the Laravel files to the container
 COPY . /var/www/html
