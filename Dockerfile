@@ -8,7 +8,30 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libxml2-dev \
     zip \
-    unzip
+    unzip \
+    && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
+    && docker-php-ext-install \
+        gd \
+        ldap \
+        curl \
+        ffi \
+        ftp \
+        fileinfo \
+        gettext \
+        gmp \
+        intl \
+        imap \
+        mbstring \
+        exif \
+        mysqli \
+        odbc \
+        openssl \
+        pdo_mysql \
+        pdo_odbc \
+        pdo_pgsql \
+        pdo_sqlite \
+        pgsql \
+        shmop
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
