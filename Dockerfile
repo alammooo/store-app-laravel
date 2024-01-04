@@ -63,7 +63,7 @@
 
 FROM php:latest
 
-# Arguments defined in docker-compose.yml
+# # Arguments defined in docker-compose.yml
 # ARG user
 # ARG uid
 
@@ -86,12 +86,15 @@ RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Create system user to run Composer and Artisan Commands
-# RUN useradd -G www-data,root -u $uid -d /home/$user $user
-# RUN mkdir -p /home/$user/.composer && \
-#     chown -R $user:$user /home/$user
-
 # Set working directory
 WORKDIR /var/www
 
-# USER $user
+# Copy the Laravel files to the container
+COPY . /var/www/html
+
+# Expose port 80 (adjust if using a different port)
+EXPOSE 80
+
+# Command to start PHP server
+CMD php artisan serve --host=0.0.0.0 --port=80
+
