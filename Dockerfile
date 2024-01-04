@@ -16,11 +16,11 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Copy the Laravel files to the container
 COPY . /var/www/html
 
-# Install Laravel dependencies
-RUN composer install
-
 # Copy custom PHP configuration
 COPY php.ini /usr/local/etc/php/conf.d/php.ini
+
+# Install Laravel dependencies
+RUN composer install
 
 # Expose port 80 (adjust if using a different port)
 EXPOSE 80
