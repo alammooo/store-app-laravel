@@ -92,6 +92,9 @@ WORKDIR /var/www
 # Copy the Laravel files to the container
 COPY . /var/www/html
 
+# Install Laravel dependencies
+RUN composer install
+
 # Expose port 80 (adjust if using a different port)
 EXPOSE 80
 
