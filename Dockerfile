@@ -19,6 +19,9 @@ COPY . /var/www/html
 # Install Laravel dependencies
 RUN composer install
 
+# Copy custom PHP configuration
+COPY php.ini /usr/local/etc/php/conf.d/php.ini
+
 # Expose port 80 (adjust if using a different port)
 EXPOSE 80
 
