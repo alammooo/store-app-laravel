@@ -63,7 +63,7 @@ class ProductController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time() . '_' . $image->getClientOriginalName();
-            $image->move(public_path('public/images'), $imageName);
+            $image->move(public_path('images'), $imageName);
             $validatedData['image'] = $imageName;
         }
 
@@ -98,7 +98,7 @@ class ProductController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time() . '_' . $image->getClientOriginalName();
-            $image->move(public_path('public/images'), $imageName);
+            $image->move(public_path('images'), $imageName);
             $validatedData['image'] = $imageName;
         }
 
