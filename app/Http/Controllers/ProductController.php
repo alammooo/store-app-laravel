@@ -98,9 +98,10 @@ class ProductController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time() . '_' . $image->getClientOriginalName();
-            $image->storeAs('public/images', $imageName);
+            $image->storeAs('images', $imageName, 'public');
             $validatedData['image'] = $imageName;
         }
+
         Product::where('id', request('id'))->update($validatedData);
 
         return redirect('/product')->with('success', 'Produk telah berhasil diubah');
@@ -196,7 +197,7 @@ class ProductController extends Controller
             $sheet->setCellValue('D' . $i, number_format($product->buyPrice, 0, '.', ','));
             $sheet->setCellValue('E' . $i, number_format($product->sellPrice, 0, '.', ','));
             $sheet->setCellValue('F' . $i, $product->stock);
-            $row = 'A'.$i.':F'.$i;
+            $row = 'A' . $i . ':F' . $i;
             $sheet->getStyle($row)->applyFromArray([
                 'borders' => [
                     'allBorders' => [
