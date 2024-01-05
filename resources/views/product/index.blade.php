@@ -59,7 +59,7 @@
                     class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-1 focus:ring-green-300 font-medium rounded-md text-sm px-5 py-1.5 me-2 mb-2">Export
                     Excel</a>
                 <a href="/product/create"
-                    class="focus:outline-none text-white focus:ring-1 bg-oren hover:bg-orange-600 font-medium rounded-md text-sm px-5 py-1.5 me-2 mb-2">Tambah
+                    class="focus:outline-none text-white focus:ring-1 bg-[#f42619] hover:bg-orange-600 font-medium rounded-md text-sm px-5 py-1.5 me-2 mb-2">Tambah
                     Produk</a>
             </div>
         </div>

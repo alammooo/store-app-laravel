@@ -6,7 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Store App</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        oren: "#f42619",
+                    },
+                    fontFamily: {
+                        sans: ["Inter var", ...defaultTheme.fontFamily.sans],
+                    },
+                },
+            },
+        }
+    </script>
 </head>
 
 <body>
@@ -25,7 +40,7 @@
     <aside id="default-sidebar"
         class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
         aria-label="Sidebar">
-        <div class="h-full px-3 py-12 overflow-y-auto bg-oren">
+        <div class="h-full px-3 py-12 overflow-y-auto bg-[#f42619]">
             <div class='flex justify-between mb-7 font-semibold text-white'>
                 <h1 class="text-lg flex items-center gap-1">
                     <x-bi-bag class="w-6" /> SIMS Web App
@@ -103,6 +118,7 @@
     </div>
 
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 </body>
 
 </html>

@@ -6,7 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $title }}</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        oren: "#f42619",
+                    },
+                    fontFamily: {
+                        sans: ["Inter var", ...defaultTheme.fontFamily.sans],
+                    },
+                },
+            },
+        }
+    </script>
 </head>
 
 <body>
@@ -21,7 +36,7 @@
             <h1 class='text-3xl font-bold max-w-sm text-center'>
                 Masuk atau buat akun untuk memulai
             </h1>
-            
+
             <form action="/auth" method="post" class='w-1/2 mx-auto'>
                 @if (session()->has('loginError'))
                     <div class="p-4 mb-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
@@ -58,6 +73,8 @@
             <img class='w-full h-screen object-cover' src={{ asset('images/frameBg.png') }} alt='frameBg' />
         </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 </body>
 
 </html>
