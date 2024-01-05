@@ -89,7 +89,7 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
-        $validatedData = $request->validate(Product::$rules);
+        $validatedData = $request->validate(Product::$updateRules);
 
         $validatedData['sellPrice'] = floatval(str_replace(',', '', $validatedData['sellPrice']));
         $validatedData['buyPrice'] = floatval(str_replace(',', '', $validatedData['buyPrice']));
@@ -216,6 +216,8 @@ class ProductController extends Controller
         $writer = new Xlsx($spreadsheet);
         $excelFileName = 'data_product.xlsx';
         $excelFilePath = storage_path('exports/' . $excelFileName);
+
+        dd($excelFilePath);
         $writer->save($excelFilePath);
 
         return response()->download($excelFilePath, $excelFileName)->deleteFileAfterSend(true);

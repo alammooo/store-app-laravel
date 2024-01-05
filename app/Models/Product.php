@@ -25,6 +25,15 @@ class Product extends Model
         'categoryId' => 'required|exists:categories,id',
     ];
 
+    public static $updateRules = [
+        'name' => 'required',
+        'buyPrice' => 'required',
+        'sellPrice' => 'required',
+        'stock' => 'required|numeric',
+        'image' => 'required|image|mimes:jpeg,png|max:100', // Max size 100KB, allowed formats: JPG, PNG
+        'categoryId' => 'required|exists:categories,id',
+    ];
+
     public function scopeFilter($query, array $filters)
     {
         // if (request('search')) {
