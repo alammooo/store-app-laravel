@@ -218,7 +218,6 @@ class ProductController extends Controller
         $excelFileName = 'data_product.xlsx';
         $excelFilePath = storage_path('exports/' . $excelFileName);
 
-        dd($excelFilePath);
         $writer->save($excelFilePath);
 
         return response()->download($excelFilePath, $excelFileName)->deleteFileAfterSend(true);
