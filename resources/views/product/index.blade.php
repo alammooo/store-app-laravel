@@ -111,8 +111,8 @@
                                     {{ $key + 1 }}
                                 </td>
                                 <td class="px-4 py-2">
-                                    <img src="{{ asset('storage/images/' . $product->image) }}" alt="{{ $product->name }}" loading="lazy"
-                                        class="w-10 h-10 object-cover">
+                                    <img src="{{ '../storage/app/public/images/' . $product->image }}"
+                                        alt="{{ $product->name }}" loading="lazy" class="w-10 h-10 object-cover">
                                 </td>
                                 <th scope="row" class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap">
                                     {{ $product->name }}
